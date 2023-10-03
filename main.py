@@ -13,17 +13,11 @@ st.set_page_config(page_title="Credit Card Approval", layout="wide")
 st.header("Credit Card Approval Prediction Machine")
 st.write("Paragraph")
 
-@st.cache_data
-def load_data():
-    data = pd.read_csv("clean_dataset.csv")
-    #st.write(data.head())
+data = pd.read_csv("clean_dataset.csv")
+#st.write(data.head())
 
-    features = data[["Gender", "Age", "Married", "Employed","YearsEmployed", "Income","BankCustomer", "PriorDefault", "Debt", "CreditScore"]]
-    labels = data["Approved"]
-
-    return features, labels
-
-features, labels = load_data()
+features = data[["Gender", "Age", "Married", "Employed","YearsEmployed", "Income","BankCustomer", "PriorDefault", "Debt", "CreditScore"]]
+labels = data["Approved"]
 
 features_train, features_test, labels_train, labels_test = train_test_split(features, labels, test_size = 0.7, random_state= 42)
 
